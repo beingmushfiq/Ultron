@@ -1041,6 +1041,14 @@ class JarvisLive:
         key    = self._dashboard.new_key()
         url    = self._dashboard.get_url()
         manual = self._dashboard.get_manual_url()
+        print("\n" + "=" * 54)
+        print("  📱 ULTRON ANDROID COMPANION PAIRING")
+        print(f"  PAIRING PIN:     {key}")
+        print(f"  DESKTOP HOST:    {self._dashboard._ip}")
+        print(f"  PORT:            8000")
+        print(f"  TLS (HTTPS):     {'ENABLED (check TLS on Android)' if self._dashboard._ssl_enabled() else 'DISABLED'}")
+        print(f"  PAIRING URL:     {url}")
+        print("=" * 54 + "\n", flush=True)
         return url, key, f"{url}/auto-login?key={key}", manual
 
     def _on_text_command(self, text: str):
@@ -1485,6 +1493,8 @@ class JarvisLive:
             tg.create_task(self._run_system_monitor())
             tg.create_task(self._run_background_monitor())
             tg.create_task(self._run_sleep_watch())
+            if self._dashboard:
+                tg.create_task(self._relay_phone_audio())
 
             # Startup greeting / briefing (fires once on startup)
             if not self._briefing_sent:
@@ -2247,8 +2257,10 @@ class JarvisLive:
                 while True:
                     await asyncio.sleep(0.1)
         except Exception as e:
-            print(f"[JARVIS] ❌ Mic: {e}")
-            raise
+            print(f"[JARVIS] ⚠️ Mic input unavailable: {e}")
+            self.ui.write_log("SYS: PC microphone unavailable (use companion app or keyboard).")
+            while True:
+                await asyncio.sleep(1)
 
     async def _flush_pending_vision(self) -> bool:
         """Send a captured frame immediately after its tool response.
@@ -3028,6 +3040,12 @@ class JarvisLive:
             asyncio.create_task(_safe_dashboard())
             # Runs for the whole lifetime, not just inside an active session
             asyncio.create_task(self._process_dashboard_commands())
+
+            # Automatically show remote pairing overlay for companion app
+            async def _auto_open_remote():
+                await asyncio.sleep(1.0)
+                self.ui.show_remote()
+            asyncio.create_task(_auto_open_remote())
         except Exception as e:
             print(f"[Dashboard] Disabled: {e}")
             self._dashboard = None

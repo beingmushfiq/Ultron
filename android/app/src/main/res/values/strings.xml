@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Ultron Companion</string>
+    <string name="title_home">Status</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_actions">Actions</string>
+    <string name="title_memory">Memory</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="connection_connected">Connected</string>
+    <string name="connection_disconnected">Disconnected</string>
+    <string name="connection_pairing">Pairing Required</string>
+
+    <string name="record_audio_permission_rationale">Push-to-talk voice input requires microphone access to transmit spoken instructions to your Ultron assistant.</string>
+</resources>

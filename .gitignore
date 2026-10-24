@@ -32,6 +32,7 @@ ENV/
 # ── IDEs & System Files ────────────────────────────────────────────
 .vscode/
 .idea/
+.agents/
 *.swp
 .DS_Store
 Thumbs.db

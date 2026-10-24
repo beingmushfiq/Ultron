@@ -250,6 +250,26 @@ Ultron comes equipped with **51 auto-discovered native tools**, categorized belo
 
 ---
 
+## 📱 Ultron Companion for Android
+
+Ultron Companion is the official native Android companion app (`com.ultron.companion`) built with **Kotlin**, **Jetpack Compose**, and **Material 3**. It acts as a mobile control surface and voice interface paired securely to your Ultron desktop assistant.
+
+### Key Capabilities
+- **🔐 Hardware-Backed Secure Pairing**: 6-digit one-time PIN authentication with Keystore AES-256-GCM token encryption and TLS enforcement.
+- **⚡ Two-Phase Action Approvals**: Safely browse allowlisted workstation actions with an approval queue preventing unauthorized remote execution.
+- **🎙️ Voice Push-to-Talk**: Push-to-talk voice interface with system STT, animated 60 FPS neural core state visualization, and TextToSpeech responses.
+- **🧠 Neural Memory Access**: Inspect, recall, and manage Ultron's long-term memory categories directly from your mobile device.
+- **🛠️ Workspace Presets**: Instant one-tap switching between workspace environments (`coding`, `gaming`, `research`, `cyber_audit`, `chill`, `creator`).
+
+### Mobile Documentation Index
+- 📖 [Mobile Architecture Guide](docs/mobile-architecture.md) — System boundaries, data flow, and threat separation.
+- 🔌 [Mobile API Contract](docs/mobile-api-contract.md) — REST & WebSocket schemas, error formats, and authentication states.
+- 🛡️ [Mobile Security & Threat Model](docs/mobile-security.md) — Cryptographic standards, risk tiers, and authorization safeguards.
+- 🚀 [Mobile Setup & Runbook](docs/mobile-runbook.md) — Step-by-step pairing, Android build commands, and troubleshooting.
+- 📊 [Implementation & Verification Status](docs/mobile-implementation-status.md) — Feature status matrix, test logs, and build artifacts.
+
+---
+
 ## 🔒 Privacy & Security
 
 - **100% Local Execution**: All memories, terminal actions, filesystem operations, and presets remain strictly on your local machine.
@@ -261,3 +281,4 @@ Ultron comes equipped with **51 auto-discovered native tools**, categorized belo
 ## 📄 License
 
 This project is licensed under the **MIT License**.
+

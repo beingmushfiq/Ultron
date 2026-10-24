@@ -162,7 +162,10 @@ def update_memory(memory_update: dict) -> dict:
     memory = load_memory()
     if _recursive_update(memory, memory_update):
         save_memory(memory)
-        print(f"[Memory] 💾 Saved: {list(memory_update.keys())}")
+        try:
+            print(f"[Memory] Saved: {list(memory_update.keys())}")
+        except Exception:
+            pass
     return memory
 
 def _entry_value(entry) -> str:

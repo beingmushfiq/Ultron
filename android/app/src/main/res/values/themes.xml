@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.UltronCompanion" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/ultron_obsidian_black</item>
+        <item name="android:navigationBarColor">@color/ultron_obsidian_black</item>
+        <item name="android:windowBackground">@color/ultron_obsidian_black</item>
+    </style>
+</resources>

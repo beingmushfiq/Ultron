@@ -1,0 +1,23 @@
+<resources>
+    <!-- Obsidian & Graphite Surface Hierarchy -->
+    <color name="ultron_obsidian_black">#08090D</color>
+    <color name="ultron_obsidian_surface">#0F1118</color>
+    <color name="ultron_graphite_panel">#181B26</color>
+    <color name="ultron_graphite_elevated">#222636</color>
+    <color name="ultron_border_subtle">#2E3448</color>
+
+    <!-- Disciplined Crimson Identity -->
+    <color name="ultron_crimson_primary">#E52538</color>
+    <color name="ultron_crimson_bright">#FF3B50</color>
+    <color name="ultron_crimson_glow">#33E52538</color>
+
+    <!-- Signal & Status Colors -->
+    <color name="ultron_signal_green">#10B981</color>
+    <color name="ultron_signal_amber">#F59E0B</color>
+    <color name="ultron_signal_red">#EF4444</color>
+
+    <!-- Text & Content -->
+    <color name="ultron_text_primary">#F4F6FC</color>
+    <color name="ultron_text_secondary">#9CA7BA</color>
+    <color name="ultron_text_disabled">#535D6E</color>
+</resources>

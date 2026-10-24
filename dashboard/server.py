@@ -621,6 +621,7 @@ class DashboardServer:
             try:
                 from core.tts import _clean_tts_text, resolve_voice_for_text
                 from memory.config_manager import get_edge_voice, get_voice_rate, get_voice_pitch
+                # pyrefly: ignore[missing-import]
                 import edge_tts
 
                 clean = _clean_tts_text(raw)
@@ -1009,6 +1010,7 @@ class DashboardServer:
             analysis = "Visual telemetry acquired. Analysis pending."
             try:
                 from core import gemini
+                # pyrefly: ignore[missing-import]
                 from google.genai import types as gtypes
                 part = gtypes.Part.from_bytes(data=compressed_bytes, mime_type="image/jpeg")
                 analysis = gemini.text(
@@ -1158,6 +1160,13 @@ class DashboardServer:
                 pass
             finally:
                 self._clients.discard(websocket)
+
+        # ── Mobile Companion API (v1) ─────────────────────────────────────────
+        try:
+            from dashboard.mobile_api import create_mobile_router
+            app.include_router(create_mobile_router(self), prefix="/api/v1/mobile")
+        except Exception as e:
+            print(f"[Dashboard] Warning: Failed to mount mobile companion API: {e}")
 
         return app
 

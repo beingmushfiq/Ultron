@@ -3643,6 +3643,8 @@ class MainWindow(QMainWindow):
     _review_sig     = pyqtSignal(str, str, object, object)  # document review payload
     _task_sig       = pyqtSignal(str, str, str)            # (task_name, label, details)
     _task_clear_sig = pyqtSignal(bool)                     # (success)
+    _remote_sig     = pyqtSignal()                         # open remote pairing overlay
+    _phone_connected_sig = pyqtSignal()                    # thread-safe mobile connect notification
 
     def __init__(self, face_path: str):
         super().__init__()
@@ -3931,6 +3933,8 @@ class MainWindow(QMainWindow):
         self._review_sig.connect(self._show_review)
         self._task_sig.connect(self._on_task_sig)
         self._task_clear_sig.connect(self._on_task_clear_sig)
+        self._remote_sig.connect(self._open_remote)
+        self._phone_connected_sig.connect(self.notify_phone_connected)
         self._cam_stop = threading.Event()
 
         # Camera preview overlay (child of central widget, positioned in resizeEvent)
@@ -6570,7 +6574,12 @@ class JarvisUI:
             pass
 
     def notify_phone_connected(self) -> None:
-        self._win.notify_phone_connected()
+        """Thread-safe: mark remote overlay as connected."""
+        self._win._phone_connected_sig.emit()
+
+    def show_remote(self) -> None:
+        """Thread-safe: open the Remote Key / Companion PIN overlay."""
+        self._win._remote_sig.emit()
 
     def set_state(self, state: str):
         self._win._state_sig.emit(state)
